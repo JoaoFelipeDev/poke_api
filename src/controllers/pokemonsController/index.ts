@@ -57,5 +57,7 @@ export class PokemonsController {
     public static async getPokeEvolution(req: Request, res: Response) {
 
         const { id } = req.params;
+
+        const pokemon = await PokemonsRepository.getEvolutions(id);
     }
 }

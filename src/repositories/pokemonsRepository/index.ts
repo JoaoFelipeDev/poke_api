@@ -24,10 +24,14 @@ type statusPoke = {
 }
 
 type pokeEvoluationMap = {
-    species: {
-        name: string;
-        index: number;
-    };
+    evolves_to: [
+        {
+            species: {
+                name: string;
+                index: number;
+            }
+        }
+    ]
 
 }
 type pokeEvoluation = {
@@ -298,10 +302,14 @@ export class PokemonsRepository {
     public static async getEvolutions(id: string) {
         const url = process.env.POKE_URL;
         try {
-
+            const list: string[] = [];
             const data = await axios.get(`${url}/evolution-chain/${id}/`);
 
+            data.data.chain.evolves_to.map((e: pokeEvoluationMap) => {
+                list.push(e.evolves_to[0].species.name);
+            });
 
+            console.log(list);
 
         } catch (error) {
 

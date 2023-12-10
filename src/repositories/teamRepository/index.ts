@@ -61,4 +61,23 @@ export class TeamRepository {
 
         return pokemon;
     }
+
+    public static async getTeam(id: string) {
+
+        try {
+            const teams = await prisma.team.findFirst({
+                where: {
+                    user_id: id
+                },
+                include: {
+                    pokemon: true
+                }
+            })
+            console.log(teams);
+            return teams;
+        } catch (error) {
+            throw new ApiError('Erro ao encontrar time')
+        }
+
+    }
 }
