@@ -23,7 +23,7 @@ export class TeamRepository {
             }
         });
         if (namePoke != 0) {
-            throw new ApiError('Esse pokemon já foi adicionado ao time!');
+            throw new ApiError('Esse pokemon já foi adicionado ao time!', 400);
 
         }
         const team = await prisma.team.findFirst({

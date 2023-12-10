@@ -43,7 +43,7 @@ model Pokemon {
   deleted_at DateTime?
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt()
-  team_id    String    @unique
+  team_id    String
   team       Team      @relation(name: "pokemon_relation", fields: [team_id], references: [id], onDelete: Cascade)
 
   @@map("pokemon")
